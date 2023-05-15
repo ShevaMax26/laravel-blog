@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 class PostService
 {
-    public function store($data)
+    public function store(array $data): void
     {
         $data['preview_image'] = Storage::disk('public')->put('images', $data['preview_image']);
         $data['main_image'] = Storage::disk('public')->put('images', $data['main_image']);
@@ -19,7 +19,7 @@ class PostService
         }
     }
 
-    public function update($data, $post)
+    public function update(array $data, Post $post): Post
     {
         if (isset($data['preview_image'])) {
             $data['preview_image'] = Storage::disk('public')->put('images', $data['preview_image']);
